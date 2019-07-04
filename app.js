@@ -28,6 +28,4 @@ app.use(bodyParser.urlencoded({'extended':false}));
 
 app.use('/factura', factura);
 
-app.listen(3000, function(){
-    console.log('Servidor escuchando en puerto 3000');
-});
+app.listen(process.env.PORT || 3000);
