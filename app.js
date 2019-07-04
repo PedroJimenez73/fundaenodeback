@@ -27,7 +27,7 @@ app.use(bodyParser.json({}));
 app.use(bodyParser.urlencoded({'extended':false}));
 
 app.use('/factura', factura);
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 443;
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
