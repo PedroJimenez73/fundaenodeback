@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = require('bluebird');
 
-mongoose.connect('mongodb+srv://pedro:stavros@cluster0-zm7ju.mongodb.net/test?retryWrites=true&w=majority/app', {promiseLibrary: require('bluebird')})     
+mongoose.connect('mongodb+srv://pedro:stavros@cluster0-zm7ju.mongodb.net/app?retryWrites=true&w=majority', {promiseLibrary: require('bluebird')})     
     .then(()=>{
         console.log('Conectado a Base de Datos');
     })
