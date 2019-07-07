@@ -2,6 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var factura = require('./routes/factura.js');
+var usuario = require('./routes/usuario.js');
+var login = require('./routes/login');
 
 var app = express();
 var mongoose = require('mongoose');
@@ -27,7 +29,14 @@ app.use(bodyParser.json({}));
 app.use(bodyParser.urlencoded({'extended':false}));
 
 app.use('/factura', factura);
+app.use('/usuario', usuario);
+app.use('/login', login);
 const PORT = process.env.PORT || 443;
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
+
+// git add .
+// git commit -m "whatever"
+// git push heroku master
+// heroku ps:scale web=1
