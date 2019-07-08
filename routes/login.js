@@ -8,6 +8,7 @@ app.post('/', (req, res, next)=>{
     var body = req.body;
     console.log('petición login');
     Usuario.findOne({email: body.email}, (err, datos)=>{
+        console.log(datos);
         if (err) {
             return res.status(500).json({
                 ok: false,
