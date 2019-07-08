@@ -6,7 +6,7 @@ var app = express();
 
 app.post('/', (req, res, next)=>{
     var body = req.body;
-    Usuario.findOne({nombre: body.nombre}, (err, datos)=>{
+    Usuario.findOne({email: body.email}, (err, datos)=>{
         if (err) {
             return res.status(500).json({
                 ok: false,
@@ -17,7 +17,7 @@ app.post('/', (req, res, next)=>{
         if (!datos) {
             return res.status(400).json({
                 ok: false,
-                mensaje: 'Nombre de usuario no existe',
+                mensaje: 'El correo no existe',
                 errores: err
             });
         };  
@@ -34,7 +34,6 @@ app.post('/', (req, res, next)=>{
             token: token,
             nombre: datos.nombre,
             rol: datos.rol,
-            validacion: datos.validacion,
             objectId: datos._id
         });
     });

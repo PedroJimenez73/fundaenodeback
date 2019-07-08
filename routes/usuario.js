@@ -57,6 +57,7 @@ app.post('/', /*autenToken.verificarToken,*/ function(req, res, next){
     console.log(body);
     var usuario = new Usuario({
         nombre: body.nombre,
+        email: body.email,
         password: bcryptjs.hashSync(body.password, 10),
         rol: body.rol,
     });
