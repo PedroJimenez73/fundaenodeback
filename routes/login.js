@@ -18,7 +18,7 @@ app.post('/', (req, res, next)=>{
         if (!datos) {
             return res.status(400).json({
                 ok: false,
-                mensaje: 'El correo no existe',
+                mensaje: 'El correo introducido no existe',
                 errores: err
             });
         };  
