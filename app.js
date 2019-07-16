@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var factura = require('./routes/factura.js');
 var usuario = require('./routes/usuario.js');
 var login = require('./routes/login');
+var curso = require('./routes/curso');
 
 var app = express();
 var mongoose = require('mongoose');
@@ -31,6 +32,7 @@ app.use(bodyParser.urlencoded({'extended':false}));
 app.use('/factura', factura);
 app.use('/usuario', usuario);
 app.use('/login', login);
+app.use('/curso', curso);
 const PORT = process.env.PORT || 443;
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
