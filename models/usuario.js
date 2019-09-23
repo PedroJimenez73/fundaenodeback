@@ -3,12 +3,12 @@ var mongoose = require('mongoose');
 
 var UsuarioSchema = new mongoose.Schema({
     nombre: String,
-    // email: {type: String, unique: true},
     email: String,
+    // email: {type: String, unique: true},
     password: String,
     rol: String,
 });
 
-// UsuarioSchema.plugin(unique, {message: 'Nombre de usuario ya se encuentra en uso'});
+//UsuarioSchema.plugin(unique, {message: 'Nombre de usuario ya se encuentra en uso'});
 
 module.exports = mongoose.model('Usuario', UsuarioSchema);
