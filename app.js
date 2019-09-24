@@ -46,10 +46,10 @@ var conn = mongoose.connection;
 let gfs;
 
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://lmselerniam.s3-website-eu-west-1.amazonaws.com:80');
+    // res.setHeader('Access-Control-Allow-Origin', '*');
     res.header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
-    res.setHeader('Access-Control-Allow-Credentials', false);
+    // res.setHeader('Access-Control-Allow-Credentials', true);
     next();
   });
 
