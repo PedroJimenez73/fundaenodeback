@@ -13,6 +13,7 @@
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "cors": "^2.8.5",
     "ejs": "^2.5.7",
     "express": "^4.16.3",
     "gridfs-stream": "^1.1.1",
