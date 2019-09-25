@@ -54,12 +54,13 @@ app.get('/:id', /*autenToken.verificarToken,*/ function(req, res, next){
 
 app.post('/', /*autenToken.verificarToken,*/ function(req, res, next){
     var body = req.body;
-    console.log(body);
     var usuario = new Usuario({
         nombre: body.nombre,
+        apellidos: body.apellidos,
+        dni: body.dni,
         email: body.email,
         password: bcryptjs.hashSync(body.password, 10),
-        rol: body.rol,
+        roles: body.roles,
     });
     usuario.save((err, usuarioGuardado)=>{ 
         if(err) {
@@ -88,9 +89,12 @@ app.put('/:id', /*autenToken.verificarToken,*/ (req, res, next)=>{
             });
         };
         usuario.nombre = body.nombre;
+        usuario.apellidos = body.apellidos;
+        usuario.nombre = body.nombre;
+        usuario.dni = body.dni;
         usuario.email = body.email;
-        usuario.rol = body.rol;
-        usuario.validacion = body.validacion;
+        usuario.roles = body.roles;
+        // usuario.validacion = body.validacion;
         usuario.save((err, usuarioModificado)=>{
             if(err){
                 return res.status(400).json({

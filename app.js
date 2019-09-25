@@ -54,7 +54,8 @@ let gfs;
 //     next();
 //   });
 
-app.use(cors({credentials: true, origin: 'http://lmselerniam.s3-website-eu-west-1.amazonaws.com'}));
+// app.use(cors({credentials: true, origin: 'http://lmselerniam.s3-website-eu-west-1.amazonaws.com'}));
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
 app.use(bodyParser.json({}));
 app.use(bodyParser.urlencoded({'extended':false}));

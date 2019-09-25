@@ -4,10 +4,10 @@ var CursoSchema = new mongoose.Schema({
     codigo: String,
     titulo: String,
     imagen: String,
-    fechaInicio: Object,
-    fechaFin: Object,
-    unidades: Object,
-    alumnos: Object
+    horas: Number,
+    fechaInicio: String,
+    fechaFin: String,
+    autor: String
 });
 
 module.exports = mongoose.model('Curso', CursoSchema);

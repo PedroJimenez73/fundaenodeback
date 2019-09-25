@@ -40,10 +40,10 @@ app.post('/', (req, res)=>{
         codigo: body.codigo,
         titulo: body.titulo,
         imagen: body.imagen,
+        horas: body.horas,
         fechaInicio: body.fechaInicio,
         fechaFin: body.fechaFin,
-        unidades: body.unidades,
-        alumnos: body.alumnos
+        autor: body.autor,
     });
     curso.save((err, cursoGuardado)=>{
         if (err) {
@@ -71,7 +71,7 @@ app.put('/:id', function(req, res, next){
 });
 
 app.delete('/:id', function(req, res, error){
-    Factura.findByIdAndRemove(req.params.id, function(err, datos){
+    Curso.findByIdAndRemove(req.params.id, function(err, datos){
         if (err) return next(err);
         res.status(200).json({
             ok: 'true',

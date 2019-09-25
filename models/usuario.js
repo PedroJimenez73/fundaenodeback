@@ -3,10 +3,12 @@ var mongoose = require('mongoose');
 
 var UsuarioSchema = new mongoose.Schema({
     nombre: String,
+    apellidos: String,
+    dni: String,
     email: String,
     // email: {type: String, unique: true},
     password: String,
-    rol: String,
+    roles: Array,
 });
 
 //UsuarioSchema.plugin(unique, {message: 'Nombre de usuario ya se encuentra en uso'});
