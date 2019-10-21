@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var cors = require('cors')
+var cors = require('cors');
+var fs = require('fs');
+var unzip = require('unzip');
 
 var factura = require('./routes/factura.js');
 var usuario = require('./routes/usuario.js');
@@ -13,17 +15,32 @@ var mongoose = require('mongoose');
 var multer = require('multer');
 
 var DIR = './imagenes/';
+var DIRUNI = './unidades/';
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, DIR)
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
+    cb(null, req.body.nombre + '.' + file.originalname.split('.')[file.originalname.split('.').length -1] );
   }
 })
 
-var upload = multer({ storage: storage })
+var storageUni = multer.diskStorage({
+  
+  destination: function (req, file, cb) {
+    cb(null, DIRUNI)
+  },
+  filename: function (req, file, cb) {
+    // cb(null, file.originalname)
+    cb(null, req.body.nombre + '.zip');
+    fs.createReadStream(DIRUNI + '/' + req.body.nombre +'.zip').pipe(unzip.Extract({ path: DIRUNI + '/' + req.body.nombre }));
+  }
+  
+})
+
+var upload = multer({ storage: storage });
+var unidades = multer({ storage: storageUni });
 
 mongoose.Promise = require('bluebird');
 
@@ -61,6 +78,11 @@ app.use(bodyParser.json({}));
 app.use(bodyParser.urlencoded({'extended':false}));
 
 app.post('/imagenes', upload.single('file'), function (req, res, next) {
+    // req.file is the `avatar` file
+    // req.body will hold the text fields, if there were any
+  })
+
+app.post('/unidades', unidades.single('file'), function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
   })

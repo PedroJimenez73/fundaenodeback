@@ -5,9 +5,10 @@ var CursoSchema = new mongoose.Schema({
     titulo: String,
     imagen: String,
     horas: Number,
-    fechaInicio: String,
-    fechaFin: String,
-    autor: String
+    fechaInicio: Object,
+    fechaFin: Object,
+    autor: String,
+    unidades: [{titulo: String, duracion: String}]
 });
 
 module.exports = mongoose.model('Curso', CursoSchema);

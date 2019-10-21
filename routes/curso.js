@@ -44,12 +44,13 @@ app.post('/', (req, res)=>{
         fechaInicio: body.fechaInicio,
         fechaFin: body.fechaFin,
         autor: body.autor,
+        unidades: body.unidades,
     });
     curso.save((err, cursoGuardado)=>{
         if (err) {
             return res.status(400).json({
                 ok: false,
-                mensaje: 'Error al crear factura',
+                mensaje: 'Error al crear curso',
                 errores: err
             });
         };
@@ -70,6 +71,33 @@ app.put('/:id', function(req, res, next){
     });
 });
 
+app.put('/unidad/:id/:index', (req, res, next)=>{
+    var body = req.body;
+    Curso.findById(req.params.id, (err, curso)=>{
+        if(err){
+            return res.status(500).json({
+                ok: false,
+                mensaje: 'Error de conexión con servidor'
+            });
+        };
+        curso.unidades[req.params.index] = body;
+        curso.save((err, cursoMod)=>{
+            if(err){
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'Error al modificar curso',
+                    errores: err
+                });
+            };
+            res.status(200).json({
+                ok: true,
+                mensaje: 'Curso actualizado correctamente'
+            });
+        });
+    });
+});
+
+
 app.delete('/:id', function(req, res, error){
     Curso.findByIdAndRemove(req.params.id, function(err, datos){
         if (err) return next(err);
@@ -79,6 +107,31 @@ app.delete('/:id', function(req, res, error){
         });
     });
 
+});
+
+app.delete('/unidad/:id/:index', function(req, res, error){
+    Curso.findById(req.params.id, (err, curso)=>{
+        if(err){
+            return res.status(500).json({
+                ok: false,
+                mensaje: 'Error de conexión con servidor'
+            });
+        };
+        curso.unidades.splice(req.params.index, 1);
+        curso.save((err, cursoMod)=>{
+            if(err){
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'Error al modificar curso',
+                    errores: err
+                });
+            };
+            res.status(200).json({
+                ok: true,
+                mensaje: 'Curso actualizado correctamente'
+            });
+        });
+    });
 });
 
 module.exports = app;
